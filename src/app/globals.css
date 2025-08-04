@@ -1,26 +1,71 @@
 @import "tailwindcss";
+@import "tailwindcss/utilities";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base theme variables */
+  --radius: 0.625rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark theme (default) */
+:root {
+  --background: 222, 45%, 10%;    /* #191818 in HSL */
+  --foreground: 0 0% 100%;   /* #FFFFFF in HSL */
+  --accent: 204, 59%, 43%;     /* #4E8242 in HSL */
+  --inputBox:0, 2%, 10%;       /* #191818 in HSL */
+  --border:108, 27%, 18%;        /* Dark mode border */
+  --secondaryColor: 354, 31%, 47%; /* #9D5259 in HSL */
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+
+@layer base {
+  html,
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+
+  * {
+    border-color: hsl(var(--border));
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn-accent {
+    @apply bg-[hsl(var(--accent))] text-white;
+  }
+}
+
+/* Animations */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes floatDiagonal {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50% { transform: translate(-50%, -60%); }
+}
+
+.animate-spinSlow {
+  animation: spinSlow 20s linear infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-floatDiagonal {
+  animation: floatDiagonal 8s ease-in-out infinite;
 }
