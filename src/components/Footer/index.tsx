@@ -26,7 +26,7 @@ const FooterSection = () => {
             Contact
           </a>
           <a
-            href="https://github.com/subulraza"
+            href="https://github.com/Subulzaidi"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
@@ -44,7 +44,7 @@ const FooterSection = () => {
             <FaEnvelope />
           </a>
           <a
-            href="https://github.com/subulraza"
+            href="https://github.com/Subulzaidi"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-purple-400 transition"
@@ -52,7 +52,7 @@ const FooterSection = () => {
             <FaGithub />
           </a>
           <a
-            href="https://linkedin.com/in/subulraza"
+            href="https://www.linkedin.com/in/subul-raza-zaidi/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-400 transition"

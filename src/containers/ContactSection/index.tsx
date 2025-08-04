@@ -81,12 +81,11 @@ const ContactSection = () => {
       return { success: true };
     } catch (error) {
       console.error("Email failed:", error);
-      if (
-        typeof error === "object" &&
-        error !== null &&
-        "message" in error
-      ) {
-        return { success: false, error: (error as { message: string }).message };
+      if (typeof error === "object" && error !== null && "message" in error) {
+        return {
+          success: false,
+          error: (error as { message: string }).message,
+        };
       }
       return { success: false, error: "Unknown error occurred" };
     }
@@ -97,19 +96,28 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     if (!formData.name || !formData.email || !formData.message) {
-      setStatus({ type: "error", message: "Please fill in all required fields." });
+      setStatus({
+        type: "error",
+        message: "Please fill in all required fields.",
+      });
       setIsSubmitting(false);
       return;
     }
 
     if (!validateEmail(formData.email)) {
-      setStatus({ type: "error", message: "Please enter a valid email address." });
+      setStatus({
+        type: "error",
+        message: "Please enter a valid email address.",
+      });
       setIsSubmitting(false);
       return;
     }
 
     if (formData.message.length < 10) {
-      setStatus({ type: "error", message: "Message must be at least 10 characters long." });
+      setStatus({
+        type: "error",
+        message: "Message must be at least 10 characters long.",
+      });
       setIsSubmitting(false);
       return;
     }
@@ -130,7 +138,8 @@ const ContactSection = () => {
     } else {
       setStatus({
         type: "error",
-        message: "Failed to send message. Please try again or contact me directly.",
+        message:
+          "Failed to send message. Please try again or contact me directly.",
       });
     }
 
@@ -139,7 +148,11 @@ const ContactSection = () => {
 
   const socialLinks = [
     { icon: FaGithub, href: "https://github.com/subulraza", label: "GitHub" },
-    { icon: FaLinkedin, href: "https://linkedin.com/in/subulraza", label: "LinkedIn" },
+    {
+      icon: FaLinkedin,
+      href: "https://linkedin.com/in/subulraza",
+      label: "LinkedIn",
+    },
   ];
 
   return (
@@ -176,7 +189,8 @@ const ContactSection = () => {
             Get In Touch
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Ready to bring your ideas to life? Let&apos;s collaborate and create something amazing!
+            Ready to bring your ideas to life? Let&apos;s collaborate and create
+            something amazing!
           </p>
         </div>
 
@@ -184,7 +198,9 @@ const ContactSection = () => {
           {/* Info Box */}
           <div className="space-y-8">
             <div className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 backdrop-blur-md border border-white/10 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-white">Let&apos;s Connect</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">
+                Let&apos;s Connect
+              </h3>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
@@ -193,8 +209,12 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="text-gray-300">Email</p>
-                    <p className="text-white font-medium">razasubul@gmail.com</p>
-                    <p className="text-white font-medium">subul9010@gmail.com</p>
+                    <p className="text-white font-medium">
+                      razasubul@gmail.com
+                    </p>
+                    <p className="text-white font-medium">
+                      subul9010@gmail.com
+                    </p>
                   </div>
                 </div>
 
@@ -232,58 +252,69 @@ const ContactSection = () => {
           {/* Contact Form */}
           <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-white/80">Full Name *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="John Doe"
-                    className="input-style"
-                    disabled={isSubmitting}
-                  />
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-white/80">Email Address *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="you@example.com"
-                    className="input-style"
-                    disabled={isSubmitting}
-                  />
+              <div className="flex  gap-6">
+                <div className="w-full flex gap-2">
+                  <div className="w-full">
+                    <label className="block mb-2 text-sm font-medium text-white/80">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="John Doe"
+                      className="input-style border p-1 border-gray-600 w-full rounded-md"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <div className="w-full">
+                    <label className="block mb-2 text-sm font-medium text-white/80">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      className="input-style border p-1 border-gray-600 w-full rounded-md"
+                      disabled={isSubmitting}
+                    />
+                  </div>
                 </div>
               </div>
-
-              <div>
-                <label className="block mb-2 text-sm font-medium text-white/80">Subject</label>
+              <div className="w-full">
+                <label className="block mb-2 text-sm font-medium text-white/80 w-full">
+                  Subject
+                </label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="Project Discussion"
-                  className="input-style"
+                  className="input-style border p-1 border-gray-600 w-full rounded-md "
                   disabled={isSubmitting}
                 />
               </div>
 
-              <div>
-                <label className="block mb-2 text-sm font-medium text-white/80">Message *</label>
+              <div className="w-full">
+                <label className="block mb-2 text-sm font-medium text-white/80">
+                  Message *
+                </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about your project..."
                   rows={5}
-                  className="input-style resize-none"
+                  className="input-style resize-none border p-1 border-gray-600 w-full rounded-md"
                   disabled={isSubmitting}
                 />
-                <p className="text-xs text-gray-400 mt-1">{formData.message.length}/500 characters</p>
+                <p className="text-xs text-gray-400 mt-1 ">
+                  {formData.message.length}/500 characters
+                </p>
               </div>
 
               {status.message && (

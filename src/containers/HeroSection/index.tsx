@@ -84,7 +84,7 @@ const LandingPage = () => {
                   <FiGithub size={24} />
                 </Link>
                 <Link
-                  href="https://linkedin.com/in/subulraza"
+                  href="https://www.linkedin.com/in/subul-raza-zaidi/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
